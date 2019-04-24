@@ -30,14 +30,26 @@ function DeleteContact(value) {
 </script>
 <style>
 body {
-  position: center;
+  position: absolute;
   top: 45px;
   background-color: powderblue;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
 }
+
+table {
+}
+
+#viewContact {
+border: 1px solid black;
+  width:350px;
+}
+
 
 </style>
 </head>
 <body>
+<h2> Welcom to LSA Addressbook</h2>
 <form id="mainForm">
 <table> <tr>
 <td>  <input type="button" onclick="javascript:menuAction(1)" value="Create Contact"> </td>
@@ -48,7 +60,7 @@ body {
 </form>
 
 <div id="viewContact">
-<table>
+<table id="viewContact">
 <tr>
 	<td> id </td>
 	<td> First Name </td>
