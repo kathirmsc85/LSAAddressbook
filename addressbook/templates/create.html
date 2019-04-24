@@ -6,36 +6,58 @@
 <script type="text/javascript">
 function menuAction(value) {
 	if (value === 1) {
-		document.getElementById("mainForm").action = "../create/"
-		document.getElementById("mainForm").submit();
+		document.getElementById("createForm").action = "../create/"
+		document.getElementById("createForm").submit();
 	}
 	if (value === 2) {
-		document.getElementById("mainForm").action = "../view/"
-		document.getElementById("mainForm").submit();
+		document.getElementById("createForm").action = "../view/"
+		document.getElementById("createForm").submit();
 	}
 	if (value === 3) {
-		document.getElementById("mainForm").action = "../search/"
-		document.getElementById("mainForm").submit();
+		document.getElementById("createForm").action = "../search/"
+		document.getElementById("createForm").submit();
 	}
 	if (value === 4) {
-		document.getElementById("mainForm").action = "../logout/"
-		document.getElementById("mainForm").submit();
+		document.getElementById("createForm").action = "../logout/"
+		document.getElementById("createForm").submit();
 	}
 	
 }
+
+function validatecreateForm(){
+	var firstname = document.getElementById("firstname").value;
+	var lastname = document.getElementById("lastname").value;
+	var phonenumber = document.getElementById("phonenumber").value;
+	var email = document.getElementById("email").value;
+	var street = document.getElementById("street").value;
+	if (firstname == "" || lastname == "" || phonenumber == "" || email == "" || street == ""){
+		username = document.getElementById("showSignupError").innerHTML = "Kindly enter the required fields";
+	}
+	else{
+		document.getElementById("createForm").action = "./"
+		document.getElementById("createForm").submit();
+	}
+}
+
 </script>
 <style>
 body {
-  position: center;
+  position: absolute;
   top: 45px;
   background-color: powderblue;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+p {
+	color:red;
 }
 
 </style>
 </head>
 <body>
-<div id="login">
-<form method="post" id="mainForm" action="./">{% csrf_token %}
+<h2> Welcom to LSA Addressbook</h2>
+<div>
+<form method="post" id="createForm">{% csrf_token %}
 <table> <tr>
 <td> <input type="button" onclick="javascript:menuAction(2)" value="View Contact"></td>
 <td> <input type="button" onclick="javascript:menuAction(3)" value="Search Contact"></td>
@@ -46,21 +68,23 @@ body {
 <br>
 <br> 
   First Name:<br>
-  <input type="text" name="firstname" value="">
+  <input type="text" name="firstname" id="firstname" value="">
   <br>
   Last Name:<br>
-  <input type="text" name="lastname" value="">
+  <input type="text" name="lastname" id="lastname" value="">
   <br>
   Phone Number:<br>
-  <input type="text" name="phonenumber" value="">
+  <input type="text" name="phonenumber" id="phonenumber" value="">
   <br>
   Email Address:<br>
-  <input type="text" name="email" value="">
+  <input type="text" name="email" id="email" value="">
   <br>
   Street:<br>
-  <input type="text" name="street" value="">
+  <input type="text" name="street" id="street" value="">
   <br>
-  <input type="submit" value="Submit">
+  <p id="showSignupError"> </p>
+  <br>
+  <input type="button" value="create contact" onclick="javascript:validatecreateForm()">
 </form>
 </div>
 </body>

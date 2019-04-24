@@ -16,40 +16,80 @@ function swapSignUp(value) {
     signup.style.display = "none";
   }
 }
+function validateForm(){
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	if ( username == "" || password == ""){
+		username = document.getElementById("showError").innerHTML = "Kindly enter the required fields";
+		return false;
+	}
+	else{
+		document.getElementById("loginForm").action = "login/"
+		document.getElementById("loginForm").submit();
+	}
+}
+
+function validateSignUpForm(){
+	var emailaddress = document.getElementById("emailaddress").value;
+	var password = document.getElementById("password").value;
+	var password1 = document.getElementById("password1").value;
+	if (emailaddress == "" || password == "" || password1 == ""){
+		username = document.getElementById("showSignupError").innerHTML = "Kindly enter the required fields";
+		return false;
+	}
+	else{
+		document.getElementById("signUpForm").action = "signup/"
+		document.getElementById("signUpForm").submit();
+	}
+}
 </script>
 <style>
 body {
-  position: center;
-  top: 45px;
+  position: absolute;
+  left: 100px;
+  top: 150px;
   background-color: powderblue;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+p {
+	color:red;
 }
 
 </style>
 </head>
 <body>
+<h2> Welcom to LSA Addressbook</h2>
 <div id="login">
-<form method="post" action="login/">{% csrf_token %}
+<form method="post" id="loginForm">{% csrf_token %}
   Email Address:<br>
-  <input type="text" name="username" value="">
+  <input type="text" name="username" id="username" value="">
   <br>
   Password:<br>
-  <input type="password" name="password" value="">
-  <br><br>
-  <input type="submit" value="Submit">
+  <input type="password" name="password" id="password" value="">
+  <br>
+  <p id="showError"> </p>
+  <br>
+  <input type="button" value="Login" onclick="javascript:validateForm()">
 </form> 
 <p>Not a Member <a href="#" onClick="javascript:swapSignUp(1);">Sign-up</a></p>
 </div>
 <div id="signup" style="display:none;">
-<form method="post" action="signup/">{% csrf_token %}
+
+<form method="post" id="signUpForm"">{% csrf_token %}
   Email Address:<br>
-  <input type="text" name="emailaddress" value="">
+  <input type="text" name="emailaddress" id="emailaddress" value="">
   <br>
   Password:<br>
-  <input type="password" name="password" value="">
+  <input type="password" name="password" id="password" value="">
   <br>
   Confirm Password:<br>
-  <input type="password" name="password1" value="">
-  <input type="submit" value="Submit">
+  <input type="password" name="password1" id="password1" value="">
+  <br>
+  <p id="showSignupError"> </p>
+  <br>
+  <input type="button" value="Submit" onclick="javascript:validateSignUpForm()">
 </form> 
 <p>Already a Member <a href="#" onClick="javascript:swapSignUp(2);">Login</a></p>
 </div>
