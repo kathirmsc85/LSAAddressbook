@@ -13,6 +13,3 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^deletecontact/(?P<userid>\d+)/$', views.deletecontact, name='delete'),
 ]
-
-
-# url(r'^search/(?P<username>\w)$', views.search, name='search'),
