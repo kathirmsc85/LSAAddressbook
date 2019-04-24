@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LSAAddressBook</title>
+
+<script type="text/javascript">
+function menuAction(value) {
+	if (value === 1) {
+		document.getElementById("mainForm").action = "../create/"
+		document.getElementById("mainForm").submit();
+	}
+	if (value === 2) {
+		document.getElementById("mainForm").action = "../view/"
+		document.getElementById("mainForm").submit();
+	}
+	if (value === 3) {
+		document.getElementById("mainForm").action = "../search/"
+		document.getElementById("mainForm").submit();
+	}
+	if (value === 4) {
+		document.getElementById("mainForm").action = "../logout/"
+		document.getElementById("mainForm").submit();
+	}
+	
+}
+function DeleteContact(value) {
+	document.getElementById("mainForm").action = "../deletecontact/"+value
+	document.getElementById("mainForm").submit();
+}
+</script>
+<style>
+body {
+  position: center;
+  top: 45px;
+  background-color: powderblue;
+}
+
+</style>
+</head>
+<body>
+<form id="mainForm">
+<table> <tr>
+<td>  <input type="button" onclick="javascript:menuAction(1)" value="Create Contact"> </td>
+<td> <input type="button" onclick="javascript:menuAction(3)" value="Search Contact"></td>
+<td> <input type="button" onclick="javascript:menuAction(4)" value="Logout"> </td>
+</tr>
+ </table>
+</form>
+
+<div id="viewContact">
+<table>
+<tr>
+	<td> id </td>
+	<td> First Name </td>
+	<td> Last Name </td>
+	<td> Delete </td>
+</tr>
+
+        {% for contact in contacts %}
+            <tr>
+            <td> {{ contact.id }} </td>
+            <td> {{ contact.firstname }} </td>
+            <td> {{ contact.lastname }} </td>
+            <td><a href="#" onClick="javascript:DeleteContact({{ contact.id }})">Delete</a></td>
+            </tr>
+        {% endfor %}
+ </table>
+
+</div>
+</form>
+</body>
+</html>

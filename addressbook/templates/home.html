@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>LSAAddressBook</title>
+
+<script type="text/javascript">
+function swapSignUp(value) {
+  var login = document.getElementById("login");
+  var signup = document.getElementById("signup");
+  if (value === 1) {
+    login.style.display = "none";
+    signup.style.display = "block";
+  } else {
+    login.style.display = "block";
+    signup.style.display = "none";
+  }
+}
+</script>
+<style>
+body {
+  position: center;
+  top: 45px;
+  background-color: powderblue;
+}
+
+</style>
+</head>
+<body>
+<div id="login">
+<form method="post" action="login/">{% csrf_token %}
+  Email Address:<br>
+  <input type="text" name="username" value="">
+  <br>
+  Password:<br>
+  <input type="password" name="password" value="">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<p>Not a Member <a href="#" onClick="javascript:swapSignUp(1);">Sign-up</a></p>
+</div>
+<div id="signup" style="display:none;">
+<form method="post" action="signup/">{% csrf_token %}
+  Email Address:<br>
+  <input type="text" name="emailaddress" value="">
+  <br>
+  Password:<br>
+  <input type="password" name="password" value="">
+  <br>
+  Confirm Password:<br>
+  <input type="password" name="password1" value="">
+  <input type="submit" value="Submit">
+</form> 
+<p>Already a Member <a href="#" onClick="javascript:swapSignUp(2);">Login</a></p>
+</div>
+</body>
+</html>

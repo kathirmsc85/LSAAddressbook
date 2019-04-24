@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LSAAddressBook</title>
+
+<script type="text/javascript">
+function menuAction(value) {
+	if (value === 1) {
+		document.getElementById("mainForm").action = "../create/"
+		document.getElementById("mainForm").submit();
+	}
+	if (value === 2) {
+		document.getElementById("mainForm").action = "../view/"
+		document.getElementById("mainForm").submit();
+	}
+	if (value === 3) {
+		document.getElementById("mainForm").action = "../search/"
+		document.getElementById("mainForm").submit();
+	}
+	if (value === 4) {
+		document.getElementById("mainForm").action = "../logout/"
+		document.getElementById("mainForm").submit();
+	}
+	
+}
+</script>
+<style>
+body {
+  position: center;
+  top: 45px;
+  background-color: powderblue;
+}
+
+</style>
+</head>
+<body>
+<div id="login">
+<form method="post" id="mainForm" action="./">{% csrf_token %}
+
+<table> <tr>
+<td>  <input type="button" onclick="javascript:menuAction(1)" value="Create Contact"> </td>
+<td> <input type="button" onclick="javascript:menuAction(2)" value="View Contact"></td>
+<td> <input type="button" onclick="javascript:menuAction(4)" value="Logout"> </td>
+</tr>
+ </table>
+ 
+ <br>
+ <br>
+  First Name:<br>
+  <input type="text" name="firstname" value="">
+  <br>
+  <input type="submit" value="Search">
+</form>
+</div>
+</body>
+</html>
